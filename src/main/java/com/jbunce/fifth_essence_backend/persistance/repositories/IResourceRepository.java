@@ -1,9 +1,9 @@
 package com.jbunce.fifth_essence_backend.persistance.repositories;
 
-import com.jbunce.fifth_essence_backend.persistance.entities.pivots.PublicacionResource;
+import com.jbunce.fifth_essence_backend.persistance.entities.Resource;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PublicacionResourceRepository extends JpaRepository<PublicacionResource, Long> {
+public interface IResourceRepository extends JpaRepository<Resource, Long> {
 }
