@@ -75,6 +75,11 @@ public class UserServiceImpl implements IUserService {
         return repository.findByPhoneNumber(phoneNumber).orElseThrow(EntityNotFoundException::new);
     }
 
+    @Override
+    public UserResponse toResponse(User user) {
+        return toUserResponse(user);
+    }
+
     private UserResponse toUserResponse(User user) {
         return new UserResponse(
             user.getId(),

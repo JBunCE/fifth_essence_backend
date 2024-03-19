@@ -44,6 +44,7 @@ public class ApplicationSecurityConfig {
         authenticationFilter.setAuthenticationManager(authenticationManager);
         authenticationFilter.setFilterProcessesUrl("/application/access");
 
+        http.cors(AbstractHttpConfigurer::disable);
         http.csrf(AbstractHttpConfigurer::disable);
         http.exceptionHandling(exceptionHandling -> exceptionHandling
                 .authenticationEntryPoint(authenticationEntryPoint)
@@ -54,10 +55,7 @@ public class ApplicationSecurityConfig {
         http.addFilter(authenticationFilter)
                 .addFilterBefore(authorizationFilter, ApplicationAuthenticationFilter.class);
         http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers("/default/health").permitAll();
-            auth.requestMatchers("/token/refresh").permitAll();
-            auth.requestMatchers("/users/create").permitAll();
-            auth.requestMatchers("/users/**").hasRole("ADMIN");
+            auth.requestMatchers("/**").permitAll().anyRequest().authenticated();
         });
 
         return http.httpBasic(Customizer.withDefaults()).build();
