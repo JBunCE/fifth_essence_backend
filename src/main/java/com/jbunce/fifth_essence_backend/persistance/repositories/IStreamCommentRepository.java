@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StreamCommentRepository extends JpaRepository<StreamComment, Long> {
+public interface IStreamCommentRepository extends JpaRepository<StreamComment, Long> {
 }
