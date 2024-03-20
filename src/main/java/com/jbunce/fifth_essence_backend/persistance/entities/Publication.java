@@ -40,7 +40,7 @@ public class Publication {
     private String body;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "users_user_id", nullable = false)
     private User usersUser;
 

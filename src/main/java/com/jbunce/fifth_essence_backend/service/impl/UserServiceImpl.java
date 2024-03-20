@@ -11,6 +11,7 @@ import com.jbunce.fifth_essence_backend.web.dtos.response.UserResponse;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,9 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private IRoleService roleService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public BaseResponse findAll() {
@@ -85,8 +89,7 @@ public class UserServiceImpl implements IUserService {
             user.getId(),
             user.getUsername(),
             user.getPhoneNumber(),
-            user.getEmail(),
-            user.getRoles().stream().map(Role::getName).collect(Collectors.toSet())
+            user.getEmail()
         );
     }
 
@@ -96,7 +99,7 @@ public class UserServiceImpl implements IUserService {
         user.setUsername(request.username());
         user.setPhoneNumber(request.phoneNumber());
         user.setEmail(request.email());
-        user.setPassword(request.password());
+        user.setPassword(passwordEncoder.encode(request.password()));
 
         return user;
     }

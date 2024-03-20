@@ -10,6 +10,5 @@ public record UserResponse(
         Long id,
         String username,
         String phoneNumber,
-        String email,
-        Set<String> roles
+        String email
 ) implements Serializable { }
