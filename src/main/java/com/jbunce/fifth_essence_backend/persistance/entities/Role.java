@@ -19,6 +19,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "roles", schema = "fifth_db")
 public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id", nullable = false)
@@ -29,8 +30,7 @@ public class Role {
     private String name;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "users_user_id", nullable = false)
     private User usersUser;
-
 }

@@ -35,11 +35,9 @@ public class User {
     @Column(name = "phone_number", nullable = false, length = 45)
     private String phoneNumber;
 
-    @Size(max = 45)
     @Column(name = "email", length = 45)
     private String email;
 
-    @Size(max = 45)
     @Column(name = "password", length = 45)
     private String password;
 
